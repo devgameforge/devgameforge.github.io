@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>ToDo - Sombre</title>
+	<link rel="stylesheet" href="styles.css" />
+	<!-- Override local theme accent color to green -->
+	<style>
+		:root {
+			--accent: #38b000; /* vert secondaire */
+		}
+		/* Enlever contour / ombre des onglets catégories */
+		.cat {
+			border: none !important;
+			box-shadow: none !important;
+			outline: none !important;
+		}
+		/* Cacher le menu vertical injecté par le rendu (on gère suppression via le modal) */
+		.cat span { display: none !important; }
+
+		/* Style du bouton supprimer dans le modal */
+		#category-delete{
+			display:none;
+			background:#ff6b6b; /* danger */
+			color:white;
+			border:none;
+			padding:8px 10px;
+			border-radius:8px;
+			cursor:pointer;
+		}
+		#category-delete.show{ display:inline-block; }
+
+		/* Styles pour les boutons d'édition et de suppression de la catégorie courante */
+		.small-btn {
+			background: none;
+			border: none;
+			cursor: pointer;
+			font-size: 1.2rem;
+			margin-left: 0.5rem;
+			padding: 0;
+			color: var(--accent);
+		}
+		.small-btn[title="Supprimer la catégorie"] {
+			color: var(--danger);
+		}
+		/* Style pour le lien vers la page d'accueil */
+		.back-link {
+			text-decoration: none;
+			color: var(--accent);
+			font-size: 1.2rem;
+			margin-right: 0.5rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="app">
+		<header class="topbar">
+			<a id="btn-back-home" class="back-link" href="index.html" aria-label="Retour à l'accueil">← Accueil</a>
+			<h1>Mes listes</h1>
+			<button id="btn-add-category" class="icon-btn">+</button>
+		</header>
+
+		<!-- categories (onglets) -->
+		<nav id="categories" class="categories"></nav>
+
+		<!-- tasks area -->
+		<main class="main">
+			<section class="tasks-header">
+				<div class="tasks-header-left">
+					<h2 id="current-category-name">Toutes les tâches</h2>
+					<div class="current-cat-controls">
+						<button id="btn-edit-current-category" class="small-btn" title="Modifier la catégorie">✎</button>
+						<button id="btn-delete-current-category" class="small-btn" title="Supprimer la catégorie" style="color:var(--danger)">🗑</button>
+					</div>
+				</div>
+				<button id="btn-add-task" class="icon-btn">+</button>
+			</section>
+
+			<ul id="task-list" class="task-list"></ul>
+		</main>
+	</div>
+
+	<!-- Category modal -->
+	<div id="modal-category" class="modal hidden">
+		<form id="form-category" class="modal-sheet">
+			<h3 id="category-modal-title">Nouvelle catégorie</h3>
+			<!-- hidden id field to track editing category -->
+			<input type="hidden" id="category-id" />
+			<input id="category-name" placeholder="Nom de la catégorie" required />
+			<div class="modal-actions">
+				<button type="button" id="category-cancel">Annuler</button>
+				<!-- Nouveau : bouton supprimer (affiché uniquement en mode édition) -->
+				<button type="button" id="category-delete">Supprimer</button>
+				<button type="submit" id="category-save">Enregistrer</button>
+			</div>
+		</form>
+	</div>
+
+	<!-- Task modal -->
+	<div id="modal-task" class="modal hidden">
+		<form id="form-task" class="modal-sheet">
+			<h3 id="task-modal-title">Nouvelle tâche</h3>
+			<input id="task-title" placeholder="Titre" required />
+			<textarea id="task-desc" placeholder="Description (Markdown support)"></textarea>
+			<div class="modal-actions">
+				<button type="button" id="task-cancel">Annuler</button>
+				<button type="submit" id="task-save">Enregistrer</button>
+			</div>
+		</form>
+	</div>
+
+	<!-- marked.js for Markdown rendering -->
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	<script type="module" src="app.js"></script>
+</body>
+</html>
