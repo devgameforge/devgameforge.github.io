@@ -339,12 +339,24 @@ if (categoryDeleteBtn) {
 
 // Export/Import functions
 function exportState() {
-    const dataStr = JSON.stringify(state, null, 2);
+    // Export only current category and its tasks
+    const currentCat = state.categories.find(c => c.id === state.activeCategoryId);
+    if (!currentCat) {
+        alert('Veuillez sélectionner une liste à exporter');
+        return;
+    }
+
+    const export_data = {
+        category: currentCat,
+        tasks: state.tasks.filter(t => t.categoryId === currentCat.id)
+    };
+
+    const dataStr = JSON.stringify(export_data, null, 2);
     const blob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `tasks_backup_${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `${currentCat.name}_${new Date().toISOString().split('T')[0]}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -352,13 +364,33 @@ function exportState() {
 }
 
 function importState(file) {
+    // Import into current category
+    if (!state.activeCategoryId) {
+        alert('Veuillez sélectionner une liste où importer');
+        return;
+    }
+
     const reader = new FileReader();
     reader.onload = (e) => {
         try {
             const imported = JSON.parse(e.target.result);
-            if (imported && imported.categories && imported.tasks) {
-                if (confirm('Remplacer toutes les données actuelles ?')) {
-                    state = imported;
+            if (imported && (imported.tasks || imported.category)) {
+                const message = 'Ajouter ces tâches à la liste courante ?';
+                if (confirm(message)) {
+                    // Add tasks to current category while preserving their properties
+                    const tasks = imported.tasks || [];
+                    tasks.forEach(task => {
+                        // Create new task but keep original properties (except IDs and categoryId)
+                        const newTask = {
+                            id: uid(),
+                            categoryId: state.activeCategoryId,
+                            title: task.title,
+                            description: task.description,
+                            completed: !!task.completed,
+                            createdAt: task.createdAt || Date.now()
+                        };
+                        state.tasks.push(newTask);
+                    });
                     saveState();
                     renderAll();
                 }
