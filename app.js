@@ -337,6 +337,49 @@ if (categoryDeleteBtn) {
 	});
 }
 
+// Export/Import functions
+function exportState() {
+    const dataStr = JSON.stringify(state, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `tasks_backup_${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+function importState(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const imported = JSON.parse(e.target.result);
+            if (imported && imported.categories && imported.tasks) {
+                if (confirm('Remplacer toutes les données actuelles ?')) {
+                    state = imported;
+                    saveState();
+                    renderAll();
+                }
+            } else {
+                alert('Format de fichier invalide');
+            }
+        } catch(err) {
+            alert('Erreur lors de l\'import: ' + err.message);
+        }
+    };
+    reader.readAsText(file);
+}
+
+// Add export/import handlers
+$('#btn-export').addEventListener('click', exportState);
+$('#btn-import').addEventListener('click', () => $('#import-file').click());
+$('#import-file').addEventListener('change', (e) => {
+    if (e.target.files.length) importState(e.target.files[0]);
+    e.target.value = ''; // reset for allowing same file
+});
+
 // Render all
 function renderAll(){
 	// header category name

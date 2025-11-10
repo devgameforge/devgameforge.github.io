@@ -173,3 +173,15 @@ body{
 	color:var(--accent);
 	background:rgba(255,255,255,0.02);
 }
+
+.topbar-actions {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+/* Plus petit que le + mais même style */
+.topbar-actions .icon-btn {
+	font-size: 1rem;
+	padding: 8px;
+}
