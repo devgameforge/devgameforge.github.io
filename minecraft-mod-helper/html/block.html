@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création d'un bloc</title>
+    <link rel="stylesheet" href="../css/block.css">
+</head>
+
+<body>
+
+    <a class="back-btn" href="../html/app.html" aria-label="Retour à l'accueil">Accueil</a>
+
+    <h1>Création d'un bloc</h1>
+
+    <div class="form">
+
+        <label for="blockName">Nom du bloc :</label>
+        <input type="text" id="blockName" name="blockName" placeholder="ex : custom_block">
+
+        <label for="creativeTabName">Nom de l'onglet créatif :</label>
+        <input type="text" id="creativeTabName" name="creativeTabName" placeholder="ex : CUSTOM_TAB">
+
+        <label for="hardness">Hardness :</label>
+        <input type="number" id="hardness" name="hardness" step="0.1" placeholder="ex : 1.5">
+
+        <label for="explosionResistance">Explosion Resistance :</label>
+        <input type="number" id="explosionResistance" name="explosionResistance" step="0.1" placeholder="ex : 6.0">
+
+        <label for="lightLevel">Light Level :</label>
+        <input type="number" id="lightLevel" name="lightLevel" min="0" max="15" placeholder="ex : 0">
+
+        <div class="checkbox-div">
+            <label for="noOcclusion">No Occlusion :</label>
+            <input type="checkbox" id="noOcclusion" name="noOcclusion">
+        </div>
+
+        <div class="checkbox-div">
+            <label for="isViewBlocking">is View Blocking :</label>
+            <input type="checkbox" id="isViewBlocking" name="isViewBlocking">
+        </div>
+
+        <div class="checkbox-div">
+            <label for="isRedstoneConductor">is Redstone Conductor :</label>
+            <input type="checkbox" id="isRedstoneConductor" name="isRedstoneConductor">
+        </div>
+
+        <div class="checkbox-div">
+            <label for="emissiveRendering">Emissive Rendering :</label>
+            <input type="checkbox" id="emissiveRendering" name="emissiveRendering">
+        </div>
+
+        <div class="checkbox-div">
+            <label for="dynamicShape">Dynamic Shape :</label>
+            <input type="checkbox" id="dynamicShape" name="dynamicShape">
+        </div>
+
+        <div class="checkbox-div">
+            <label for="requiresCorrectToolForDrops">Requires Correct Tool For Drops :</label>
+            <input type="checkbox" id="requiresCorrectToolForDrops" name="requiresCorrectToolForDrops">
+        </div>
+
+        <label for="friction">Friction :</label>
+        <input type="number" id="friction" name="friction" step="0.01" placeholder="ex : 0.6">
+
+        <label for="speedFactor">Speed Factor :</label>
+        <input type="number" id="speedFactor" name="speedFactor" step="0.01" placeholder="ex : 0.6">
+
+        <label for="jumpFactor">Jump Factor :</label>
+        <input type="number" id="jumpFactor" name="jumpFactor" step="0.01" placeholder="ex : 0.6">
+
+        <div class="checkbox-div">
+            <label for="randomTicks">Random Ticks :</label>
+            <input type="checkbox" id="randomTicks" name="randomTicks">
+        </div>
+
+        <div class="checkbox-div">
+            <label for="noLootTable">No LootTable :</label>
+            <input type="checkbox" id="noLootTable" name="noLootTable">
+        </div>
+
+        <label for="dropsLike">Drops Like :</label>
+        <input type="text" id="dropsLike" name="dropsLike" placeholder="ex : minecraft:stone">
+
+        <label for="lootFrom">Loot From :</label>
+        <input type="text" id="lootFrom" name="lootFrom" placeholder="ex : minecraft:stone">
+
+        <div class="checkbox-div">
+            <label for="isSolid">is Solid :</label>
+            <input type="checkbox" id="isSolid" name="isSolid">
+        </div>
+
+        <label for="sound">Sound :</label>
+        <input type="text" id="sound" name="sound" placeholder="ex : SoundType.STONE">
+
+        <label for="material">Material :</label>
+        <input type="text" id="material" name="material" placeholder="ex : Material.STONE">
+
+        <div class="checkbox-div">
+            <label for="noCollision">No Collision :</label>
+            <input type="checkbox" id="noCollision" name="noCollision">
+        </div>
+
+        <div class="checkbox-div">
+            <label for="isSuffocating">is Suffocating :</label>
+            <input type="checkbox" id="isSuffocating" name="isSuffocating">
+        </div>
+
+        <div class="checkbox-div">
+            <label for="isValidSpawn">is Valid Spawn :</label>
+            <input type="checkbox" id="isValidSpawn" name="isValidSpawn">
+        </div>
+
+        <div class="checkbox-div">
+            <label for="isPathfindable">is Pathfindable :</label>
+            <input type="checkbox" id="isPathfindable" name="isPathfindable">
+        </div>
+
+        <label for="offset">Offset :</label>
+        <input type="number" id="offset" name="offset" step="0.01" placeholder="ex : 0.0">
+
+        <label for="offsetFunction">Offset Function :</label>
+        <input type="text" id="offsetFunction" name="offsetFunction" placeholder="ex : offsetFunction">
+
+        <div class="checkbox-div">
+            <label for="instantBreak">Instant Break :</label>
+            <input type="checkbox" id="instantBreak" name="instantBreak">
+        </div>
+
+        <div class="checkbox-div">
+            <label for="noDrops">No Drops :</label>
+            <input type="checkbox" id="noDrops" name="noDrops">
+        </div>
+
+        <input type="button" id="generateBlock" value="Générer le code du bloc">
+
+    </div>
+
+    <div id="generatedCodes" class="hidden">
+
+        <div class="code-header">
+            <h2>Code du Bloc :</h2>
+            <button class="copy-btn" data-target="codeBlock">📋 Copier</button>
+        </div>
+        <pre><code id="codeBlock" class="code-zone"></code></pre>
+
+        <div class="code-header">
+            <h2>Forge Block Registrations :</h2>
+            <button class="copy-btn" data-target="codeForgeBlock">📋 Copier</button>
+        </div>
+        <pre><code id="codeForgeBlock" class="code-zone"></code></pre>
+
+        <div class="code-header">
+            <h2>Forge Item Registrations :</h2>
+            <button class="copy-btn" data-target="codeForgeItem">📋 Copier</button>
+        </div>
+        <pre><code id="codeForgeItem" class="code-zone"></code></pre>
+
+
+        <div class="code-header">
+            <h2>Creative Tab :</h2>
+            <button class="copy-btn" data-target="codeTab">📋 Copier</button>
+        </div>
+        <pre><code id="codeTab" class="code-zone"></code></pre>
+
+
+    </div>
+
+    <div id="customAlert" class="alert hidden">
+        <div class="alert-box">
+            <p id="alertMessage"></p>
+            <button id="alertClose">OK</button>
+        </div>
+    </div>
+
+
+    <script src="../js/block.js"></script>
+</body>
+
+</html>
