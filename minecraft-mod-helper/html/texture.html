@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Art Maker</title>
+    <link rel="stylesheet" href="../css/texture.css">
+</head>
+
+<body>
+
+    <a class="back-btn" href="../html/app.html" aria-label="Retour à l'accueil">Accueil</a>
+
+    <div class="app-container">
+        <h1>Pixel Editor</h1>
+
+        <div class="toolbar">
+
+            <div class="tools-group">
+                <button id="btn-brush" class="tool-btn active" title="Pinceau">🖌️</button>
+                <button id="btn-eyedropper" class="tool-btn" title="Pipette">💉</button>
+                <button id="btn-bucket" class="tool-btn" title="Pot de peinture">🪣</button>
+                <button id="btn-eraser" class="tool-btn" title="Gomme">🧼</button>
+                <button id="btn-clear" class="tool-btn delete-btn" title="Tout effacer">🗑️</button>
+            </div>
+
+            <div class="options-group">
+                <select id="size-select">
+                    <option value="16">16 x 16</option>
+                    <option value="32" selected>32 x 32</option>
+                    <option value="64">64 x 64</option>
+                    <option value="128">128 x 128</option>
+                    <option value="256">256 x 256</option>
+                    <option value="512">512 x 512</option>
+                </select>
+
+                <button id="btn-undo" class="tool-btn small" title="Annuler (Ctrl+Z)" disabled>↩️</button>
+
+                <div class="zoom-controls">
+                    <button id="btn-zoom-out" class="tool-btn small">🔍-</button>
+                    <span id="zoom-level">100%</span>
+                    <button id="btn-zoom-in" class="tool-btn small">🔍+</button>
+                </div>
+            </div>
+
+            <button id="btn-download" class="action-btn">💾 Exporter</button>
+        </div>
+
+        <div class="workspace">
+
+            <div class="canvas-viewport">
+                <div class="canvas-stack">
+                    <canvas id="bg-canvas"></canvas> <canvas id="pixel-canvas"></canvas>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="color-wrapper">
+                    <label>Couleur (HEX/RGBA)</label>
+                    <input type="text" id="color-picker" value="#79e68a" readonly>
+                    <div id="color-preview" style="width: 60px; height: 60px; border: 2px solid #79e68a;"></div>
+                </div>
+
+                <div class="alpha-control">
+                    <label for="alpha-slider">Transparence (Alpha)</label>
+                    <input type="range" id="alpha-slider" min="0" max="1" step="0.01" value="1">
+                    <span id="alpha-value">100%</span>
+                </div>
+
+                <input type="color" id="rgb-picker" value="#79e68a"
+                    style="margin-top: 15px; width: 60px; height: 60px;">
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/texture.js"></script>
+</body>
+
+</html>
