@@ -6,6 +6,29 @@ body {
     color: #e0e0e0;
 }
 
+.logo-btn{
+   position: fixed;
+    top: 15px;      /* Marge depuis le haut */
+    left: 15px;     /* Marge depuis la gauche */
+    z-index: 1000;  /* Assure qu'il est au-dessus du reste du contenu */
+    line-height: 0; /* Élimine l'espace potentiel sous l'image dû à l'alignement de texte */
+}
+
+.logo-btn img {
+    /* Définition de la taille de l'image à 64x64 */
+    width: 64px;
+    height: 64px;
+    /* Optionnel : ajouter un petit effet visuel de la charte graphique */
+    border: 2px solid var(--color-vert-emeraude-transparent);
+    border-radius: 4px;
+    transition: border-color 0.2s;
+}
+
+.logo-btn img:hover {
+    /* Interaction légère au survol */
+    border-color: var(--color-vert-emeraude);
+}
+
 .container {
     max-width: 600px;
     margin: 40px auto;

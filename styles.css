@@ -1,0 +1,120 @@
+/*
+ * 🎨 Charte Graphique – DevGameForge
+ * Style dark futuriste avec des touches de vert émeraude.
+ */
+
+/* ----------------------------------------------------
+ * 1. Variables de Couleurs
+ * ---------------------------------------------------- */
+:root {
+    --color-noir-profond: #0e0e0e; /* Fond global */
+    --color-graphite-fonce: #1a1a1a; /* Cartes, boutons, sections UI */
+    --color-vert-emeraude: #79e68a; /* Titres, textes importants, hover */
+    --color-vert-emeraude-transparent: #79e68a60; /* Bordures légères */
+    --color-gris-clair: #e0e0e0; /* Texte principal */
+}
+
+/* ----------------------------------------------------
+ * 2. Mise en page (Body et Container)
+ * ---------------------------------------------------- */
+body {
+    /* Mise en page Body */
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-noir-profond);
+    color: var(--color-gris-clair);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    text-align: center; /* Alignement : center pour le container/landing */
+}
+
+.logo-btn{
+   position: fixed;
+    top: 15px;      /* Marge depuis le haut */
+    left: 15px;     /* Marge depuis la gauche */
+    z-index: 1000;  /* Assure qu'il est au-dessus du reste du contenu */
+    line-height: 0; /* Élimine l'espace potentiel sous l'image dû à l'alignement de texte */
+}
+
+.logo-btn img {
+    /* Définition de la taille de l'image à 64x64 */
+    width: 64px;
+    height: 64px;
+    /* Optionnel : ajouter un petit effet visuel de la charte graphique */
+    border: 2px solid var(--color-vert-emeraude-transparent);
+    border-radius: 4px;
+    transition: border-color 0.2s;
+}
+
+.logo-btn img:hover {
+    /* Interaction légère au survol */
+    border-color: var(--color-vert-emeraude);
+}
+
+.landing {
+    /* Container */
+    max-width: 600px;
+    margin: 40px auto; /* Centrage horizontal automatique + marge verticale */
+    padding: 20px; /* Ajout d'un padding léger pour l'esthétique */
+    /* On pourrait ajouter un fond graphite pour encadrer le contenu
+       background-color: var(--color-graphite-fonce);
+       border-radius: 12px;
+    */
+}
+
+/* ----------------------------------------------------
+ * 3. Typographie (Titres H1)
+ * ---------------------------------------------------- */
+h1 {
+    /* Titres (H1) */
+    font-size: 2.8rem;
+    color: var(--color-vert-emeraude);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* ----------------------------------------------------
+ * 4. Composants UI (Lien principal - .big-btn)
+ * ---------------------------------------------------- */
+
+.big-btn {
+    /* Reprise des styles "Liens du menu" pour le bouton d'action principal */
+    display: inline-block; /* Affiche comme un bloc mais s'ajuste au contenu */
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 20px 0; /* Marge autour du bouton */
+
+    /* Styles de base */
+    padding: 15px 20px;
+    background-color: var(--color-graphite-fonce);
+    color: var(--color-vert-emeraude);
+    border: 2px solid var(--color-vert-emeraude-transparent);
+    border-radius: 8px;
+
+    /* Transition pour l'effet hover */
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.big-btn:hover {
+    /* Effet Hover (Vert Émeraude → Noir Profond) */
+    background-color: var(--color-vert-emeraude);
+    color: var(--color-noir-profond);
+    border-color: var(--color-vert-emeraude); /* Bordure unie au survol */
+}
+
+/* ----------------------------------------------------
+ * 5. Éléments additionnels
+ * ---------------------------------------------------- */
+
+.footer-note {
+    /* Style pour la note de pied de page */
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: var(--color-vert-emeraude-transparent); /* Rendre le texte moins intrusif */
+}
+
+p {
+    /* Style pour le paragraphe d'introduction */
+    margin-bottom: 30px;
+}
