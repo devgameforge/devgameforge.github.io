@@ -68,7 +68,7 @@ function updateBoardInStorage() {
  * Met à jour le titre du tableau, la couleur de fond et le titre de la page.
  */
 function updateBoardHeader(board) {
-    document.getElementById('board-page-title').textContent = `${board.title} - Projects Manager`;
+    document.getElementById('board-page-title').textContent = `Projects Manager — ${board.title}`;
     boardTitleDisplay.textContent = board.title;
     boardBody.style.backgroundColor = board.background;
 }
