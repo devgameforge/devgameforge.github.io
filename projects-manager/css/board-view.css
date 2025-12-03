@@ -1,0 +1,346 @@
+/*
+ * 🎨 Styles spécifiques pour board-view.html
+ * Gère le layout Kanban et le style des cartes de tâches.
+ */
+
+/* ----------------------------------------------------
+ * 1. Mise en page du Tableau (Scroll Horizontal)
+ * ---------------------------------------------------- */
+
+#board-body {
+    /* Évite que le body soit centré horizontalement et permet le scroll */
+    text-align: left; 
+    overflow-x: auto; /* Permet le défilement horizontal */
+}
+
+#board-header {
+    /* Barre d'en-tête fixe en haut */
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0px;
+    background-color: var(--color-noir-profond);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+}
+
+.board-header-div {
+    /* Conteneur Flex pour le titre et les actions */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#board-title-display {
+    /* Titre du tableau modifiable */
+    font-size: 1.8rem;
+    color: var(--color-vert-emeraude);
+    margin: 0;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#board-title-display[contenteditable="true"] {
+    /* Style pendant l'édition */
+    background-color: var(--color-graphite-fonce);
+    border: 1px solid var(--color-vert-emeraude);
+}
+
+.board-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.lists-container {
+    /* Conteneur Flexbox pour les colonnes de listes (scroll horizontal) */
+    display: flex;
+    padding: 20px 30px;
+    gap: 20px;
+    height: calc(100vh - 80px); /* Hauteur de l'écran moins la barre d'en-tête */
+    align-items: flex-start; /* Aligne les listes en haut */
+}
+
+/* ----------------------------------------------------
+ * 2. Style des Listes (Colonnes)
+ * ---------------------------------------------------- */
+
+.list-wrapper {
+    /* Conteneur d'une colonne (liste) */
+    flex-shrink: 0; /* Empêche le rétrécissement */
+    width: 300px;
+    background-color: var(--color-graphite-fonce);
+    border-radius: 8px;
+    padding: 10px;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+
+.list-title {
+    /* Titre de la liste modifiable */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-vert-emeraude);
+    padding: 5px;
+    margin: 0px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.list-menu-btn {
+    background: none;
+    border: none;
+    color: var(--color-gris-moyen);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.list-menu-btn:hover {
+    color: var(--color-gris-clair);
+}
+
+.tasks-list {
+    /* Conteneur des cartes de tâches (doit permettre le scroll vertical) */
+    padding: 5px;
+    overflow-y: auto;
+    flex-grow: 1; /* Prend l'espace restant */
+    /* Style pour la scrollbar futuriste */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--color-vert-emeraude) var(--color-graphite-fonce); /* Firefox */
+}
+
+.tasks-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tasks-list::-webkit-scrollbar-thumb {
+    background-color: var(--color-vert-emeraude-transparent);
+    border-radius: 4px;
+}
+
+.tasks-list::-webkit-scrollbar-track {
+    background: var(--color-graphite-fonce);
+}
+
+
+/* ----------------------------------------------------
+ * 3. Style des Tâches (Cartes)
+ * ---------------------------------------------------- */
+
+.task-card {
+    background-color: #2b2b2b; /* Un peu plus clair que le fond de liste */
+    color: var(--color-gris-clair);
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    cursor: grab;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;
+    transition: background-color 0.2s, border-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-card:hover {
+    background-color: #3a3a3a;
+    border-color: var(--color-vert-emeraude-transparent);
+}
+
+.task-title-wrapper {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Nouveau style pour la checkbox de la carte de tâche */
+.task-card .task-checkbox {
+    /* Rendre la checkbox plus grande (ex: 20x20 pixels) */
+    width: 32px; 
+    height: 32px;
+    /* Ajuster l'apparence par défaut du navigateur */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    background-color: var(--color-graphite-fonce);
+    border: 2px solid var(--color-vert-emeraude-transparent);
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0; /* Supprimer la marge par défaut */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.task-card .task-checkbox:hover {
+    border-color: var(--color-vert-emeraude);
+}
+
+.task-card .task-checkbox:checked {
+    background-color: var(--color-vert-emeraude);
+    border-color: var(--color-vert-emeraude);
+}
+
+/* Créer le V lors de la complétion */
+.task-card .task-checkbox:checked::before {
+    content: '✓';
+    display: block;
+    color: var(--color-noir-profond); /* Le noir profond pour le V */
+    font-size: 32px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.task-title-text {
+    /* Pour le titre affiché sur la carte */
+    font-size: 1rem;
+    margin-left: 10px;
+    word-break: break-word; /* Gérer les longs mots */
+}
+
+/* ----------------------------------------------------
+ * 4. Ajouter une Liste/Tâche
+ * ---------------------------------------------------- */
+
+.add-list-placeholder {
+    flex-shrink: 0;
+    width: 300px;
+    max-height: 100%;
+}
+
+.add-list-btn {
+    /* Le bouton "Ajouter une autre liste" */
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin: 0;
+    padding: 10px 0px;
+    background-color: var(--color-graphite-fonce);
+    color: var(--color-vert-emeraude);
+    border: 1px solid var(--color-vert-emeraude-transparent);
+}
+
+.add-list-btn:hover {
+    background-color: var(--color-vert-emeraude);
+    color: var(--color-noir-profond);
+    border-color: var(--color-vert-emeraude);
+}
+
+.new-list-form {
+    background-color: var(--color-graphite-fonce);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.new-list-form input {
+    margin-bottom: 10px;
+}
+
+.add-task-container {
+    padding: 10px 5px;
+}
+
+.add-task-btn {
+    width: 100%;
+    text-align: left;
+    padding: 8px;
+    background: none;
+    border: none;
+    color: var(--color-gris-moyen);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.add-task-btn:hover {
+    color: var(--color-gris-clair);
+}
+
+.new-task-form {
+    padding: 5px;
+}
+
+/* ----------------------------------------------------
+ * 5. Modale de Tâche et Checkbox
+ * ---------------------------------------------------- */
+
+.task-modal-content {
+    max-width: 600px;
+    text-align: left;
+}
+
+#task-modal-title {
+    margin-top: 0;
+    border-bottom: 1px solid var(--color-vert-emeraude-transparent);
+    padding-bottom: 10px;
+    transition: background-color 0.2s;
+    font-size: 1.5rem;
+}
+
+#task-modal-title[contenteditable="true"] {
+    background-color: var(--color-noir-profond);
+    padding: 5px;
+    border-radius: 4px;
+}
+
+#task-modal-description {
+    width: 100%;
+    height: 150px;
+    resize: vertical;
+    padding: 10px;
+    background-color: #2b2b2b;
+    border: 1px solid var(--color-vert-emeraude-transparent);
+    color: var(--color-gris-clair);
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.delete-btn {
+    background-color: #8b0000; /* Rouge foncé pour la suppression */
+    color: var(--color-gris-clair);
+    border-color: #8b0000;
+}
+
+.delete-btn:hover {
+    background-color: #ff0000;
+    color: var(--color-noir-profond);
+}
+
+/* Correction pour les boutons dans la modale de settings */
+#settings-modal .big-btn, #settings-modal .small-btn {
+    width: auto;
+    max-width: none;
+    margin: 10px 5px;
+}
+
+#settings-modal input[type="color"] {
+    height: 64px;
+    cursor: pointer;
+}

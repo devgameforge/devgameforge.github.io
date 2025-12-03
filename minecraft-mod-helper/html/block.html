@@ -4,19 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Création d'un bloc</title>
+    <title>Minecraft Mod Helper — Block</title>
     <link rel="stylesheet" href="../css/block.css">
+    <link rel="stylesheet" href="/components/btn/btn.css">
+    <link rel="stylesheet" href="/components/alert/alert.css">
+    <link rel="icon" type="image/png" href="/favicon/favicon.ico">
 </head>
 
 <body>
 
     <a class="back-btn" href="../html/app.html" aria-label="Retour à l'accueil">Accueil</a>
 
-    <h1>Création d'un bloc</h1>
+    <h1>Créer votre block</h1>
 
     <div class="form">
 
-        <label for="blockName">Nom du bloc :</label>
+        <label for="blockName">Nom du block :</label>
         <input type="text" id="blockName" name="blockName" placeholder="ex : custom_block">
 
         <label for="creativeTabName">Nom de l'onglet créatif :</label>
@@ -133,14 +136,14 @@
             <input type="checkbox" id="noDrops" name="noDrops">
         </div>
 
-        <input type="button" id="generateBlock" value="Générer le code du bloc">
+        <input type="button" class="btn" id="generateBlock" value="Générer le code du bloc">
 
     </div>
 
     <div id="generatedCodes" class="hidden">
 
         <div class="code-header">
-            <h2>Code du Bloc :</h2>
+            <h2>Code du Block :</h2>
             <button class="copy-btn" data-target="codeBlock">📋 Copier</button>
         </div>
         <pre><code id="codeBlock" class="code-zone"></code></pre>
@@ -175,7 +178,7 @@
     </div>
 
 
-    <script src="../js/block.js"></script>
+    <script type="module" src="../js/block.js"></script>
 </body>
 
 </html>

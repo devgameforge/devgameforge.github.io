@@ -28,29 +28,6 @@ body {
     text-align: center; /* Alignement : center pour le container/landing */
 }
 
-.logo-btn{
-   position: fixed;
-    top: 15px;      /* Marge depuis le haut */
-    left: 15px;     /* Marge depuis la gauche */
-    z-index: 1000;  /* Assure qu'il est au-dessus du reste du contenu */
-    line-height: 0; /* Élimine l'espace potentiel sous l'image dû à l'alignement de texte */
-}
-
-.logo-btn img {
-    /* Définition de la taille de l'image à 64x64 */
-    width: 64px;
-    height: 64px;
-    /* Optionnel : ajouter un petit effet visuel de la charte graphique */
-    border: 2px solid var(--color-vert-emeraude-transparent);
-    border-radius: 4px;
-    transition: border-color 0.2s;
-}
-
-.logo-btn img:hover {
-    /* Interaction légère au survol */
-    border-color: var(--color-vert-emeraude);
-}
-
 .landing {
     /* Container */
     max-width: 600px;
@@ -78,29 +55,9 @@ h1 {
  * 4. Composants UI (Lien principal - .big-btn)
  * ---------------------------------------------------- */
 
-.big-btn {
-    /* Reprise des styles "Liens du menu" pour le bouton d'action principal */
-    display: inline-block; /* Affiche comme un bloc mais s'ajuste au contenu */
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin: 20px 0; /* Marge autour du bouton */
-
-    /* Styles de base */
-    padding: 15px 20px;
-    background-color: var(--color-graphite-fonce);
-    color: var(--color-vert-emeraude);
-    border: 2px solid var(--color-vert-emeraude-transparent);
-    border-radius: 8px;
-
-    /* Transition pour l'effet hover */
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-}
-
-.big-btn:hover {
-    /* Effet Hover (Vert Émeraude → Noir Profond) */
-    background-color: var(--color-vert-emeraude);
-    color: var(--color-noir-profond);
-    border-color: var(--color-vert-emeraude); /* Bordure unie au survol */
+.container-btn{
+    display: flex;
+    flex-direction: column;
 }
 
 /* ----------------------------------------------------
@@ -109,12 +66,12 @@ h1 {
 
 .footer-note {
     /* Style pour la note de pied de page */
-    margin-top: 40px;
+    margin-top: 20px;
     font-size: 0.9rem;
     color: var(--color-vert-emeraude-transparent); /* Rendre le texte moins intrusif */
 }
 
 p {
     /* Style pour le paragraphe d'introduction */
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }

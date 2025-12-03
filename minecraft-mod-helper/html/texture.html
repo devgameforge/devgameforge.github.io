@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixel Art Maker</title>
+    <title>Minecraft Mod Helper — Texture</title>
+    <link rel="stylesheet" href="/components/btn/btn.css">
     <link rel="stylesheet" href="../css/texture.css">
+    <link rel="icon" type="image/png" href="/favicon/favicon.ico">
 </head>
 
 <body>
@@ -13,7 +15,7 @@
     <a class="back-btn" href="../html/app.html" aria-label="Retour à l'accueil">Accueil</a>
 
     <div class="app-container">
-        <h1>Pixel Editor</h1>
+        <h1>Créer votre texture</h1>
 
         <div class="toolbar">
 
@@ -27,8 +29,8 @@
 
             <div class="options-group">
                 <select id="size-select">
-                    <option value="16">16 x 16</option>
-                    <option value="32" selected>32 x 32</option>
+                    <option value="16" selected>16 x 16</option>
+                    <option value="32">32 x 32</option>
                     <option value="64">64 x 64</option>
                     <option value="128">128 x 128</option>
                     <option value="256">256 x 256</option>
@@ -56,21 +58,20 @@
             </div>
 
             <div class="sidebar">
-                <div class="color-wrapper">
-                    <label>Couleur (HEX/RGBA)</label>
-                    <input type="text" id="color-picker" value="#79e68a" readonly>
-                    <div id="color-preview" style="width: 60px; height: 60px; border: 2px solid #79e68a;"></div>
+                <div class="color-picker-component">
+                    <label class="color-label">Couleur (HEX)</label>
+                    
+                    <div class="color-preview-wrapper">
+                        <div id="color-preview" class="color-preview" style="background-color: #79e68a;"></div>
+                        <input type="color" id="rgb-picker" value="#79e68a" class="color-input-native">
+                    </div>
+                    
+                    <div class="color-display-group">
+                        <span class="label-hex">CODE :</span>
+                        <span id="hex-output" class="hex-output">#79e68a</span>
+                    </div>
                 </div>
-
-                <div class="alpha-control">
-                    <label for="alpha-slider">Transparence (Alpha)</label>
-                    <input type="range" id="alpha-slider" min="0" max="1" step="0.01" value="1">
-                    <span id="alpha-value">100%</span>
                 </div>
-
-                <input type="color" id="rgb-picker" value="#79e68a"
-                    style="margin-top: 15px; width: 60px; height: 60px;">
-            </div>
         </div>
     </div>
 

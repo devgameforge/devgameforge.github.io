@@ -1,0 +1,80 @@
+/* ------------------------------------------- */
+/* 1. TYPOGRAPHIE & MISE EN PAGE GLOBALE (Charte Graphique) */
+/* ------------------------------------------- */
+
+:root {
+    --color-noir-profond: #0e0e0e; /* Fond global */
+    --color-graphite-fonce: #1a1a1a; /* Cartes, boutons, sections UI */
+    --color-vert-emeraude: #79e68a; /* Titres, textes importants, hover */
+    --color-vert-emeraude-transparent: #79e68a60; /* Bordures légères */
+    --color-gris-clair: #e0e0e0; /* Texte principal */
+    --color-gris-moyen: #555; /* Texte secondaire, placeholders */
+}
+
+body {
+    /* Palette : Noir Profond */
+    background-color: #0e0e0e;
+    /* Police : Arial, sans-serif */
+    font-family: Arial, sans-serif;
+    /* Couleur du texte : Gris Clair */
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    /* Assure que le corps prend toute la hauteur pour centrer le contenu */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    /* Mise en page : Largeur max 600px, centrage horizontal */
+    max-width: 600px;
+    width: 90%;
+    margin: 40px auto;
+    /* Marge verticale 40px */
+    text-align: center;
+    /* Alignement du container au centre (pour texte) */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* ------------------------------------------- */
+/* 2. TITRE (H1) */
+/* ------------------------------------------- */
+
+h1 {
+    /* Paramètres spécifiques aux titres */
+    font-size: 2.8rem;
+    color: #79e68a;
+    /* Vert Émeraude */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* ------------------------------------------- */
+/* 3. ZONE D'INFORMATION (simule une zone de code ou de statut) */
+/* ------------------------------------------- */
+
+.status-box {
+    margin-top: 50px;
+    padding: 25px;
+    /* Palette : Graphite Foncé */
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    /* Palette : Vert Émeraude Transparent */
+    border: 1px solid #79e68a60;
+}
+
+.status-box p {
+    margin: 0;
+    color: #79e68a;
+    font-style: italic;
+    margin-bottom: 16px;
+}
+
+.status-box p:last-child {
+    margin-bottom: 0;
+}
