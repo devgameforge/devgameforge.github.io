@@ -18,7 +18,7 @@ const boardBackgroundInput = document.getElementById('board-background');
  * Charge la liste des tableaux depuis le localStorage.
  * @returns {Array<Object>} La liste des tableaux ou un tableau vide.
  */
-function loadBoards() {
+export function loadBoards() {
     const json = localStorage.getItem(STORAGE_KEY);
     // Retourne les données parsées, ou un tableau vide si rien n'est trouvé
     return json ? JSON.parse(json) : [];
@@ -28,7 +28,7 @@ function loadBoards() {
  * Sauvegarde la liste des tableaux dans le localStorage.
  * @param {Array<Object>} boards La liste des tableaux à sauvegarder.
  */
-function saveBoards(boards) {
+export function saveBoards(boards) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(boards));
 }
 

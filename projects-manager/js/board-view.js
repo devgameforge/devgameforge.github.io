@@ -1,4 +1,5 @@
 import { showAlert } from "/components/alert/alert.js";
+import { loadBoards, saveBoards } from './projects.js';
 
 // --- 1. Constantes et État Global ---
 let currentBoardId = null;
