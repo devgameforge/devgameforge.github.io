@@ -1,6 +1,23 @@
-## 🎨 Charte Graphique – DevGameForge
+# **DevGameForge**
 
-1. Palette de couleurs
+## **DevGameForge : L'Atelier Numérique du Développeur**
+Bienvenue dans l'univers de DevGameForge, la plateforme centralisatrice dédiée aux outils de développement et à la création de jeux vidéo par un développeur junior passionné par le mobile, le web, et surtout, par le moteur Godot.
+> DevGameForge est la devanture de mes projets, un lieu où la logique de programmation rencontre la créativité du game development.
+
+## **Le Projet : Un Portail d'Outils et de Créations**
+Ce projet est conçu comme un portail web (Github Pages) regroupant deux types de ressources essentielles :
+
+Outils de Productivité : Une suite d'applications web utilitaires pour faciliter le quotidien du développeur, telles que :
+ - Minecraft Mod Helper : Un soutien pour le codage de mods Minecraft.
+ - Projects Manager : Un outil de gestion de projets personnels.
+ - Et de nombreux autres outils à venir...
+Le Portfolio de Jeux : Un espace dédié pour découvrir et jouer aux créations développées sous le nom DevGameForge, principalement réalisées avec le moteur Godot (2D/3D). Pensez-y comme ma galerie de jeux, allant de petits prototypes inspirés de Space Invaders ou Vampire Survivors à des projets plus ambitieux.
+>L'objectif est double : M'aider dans mon apprentissage et ma gestion de projets, et Aider les utilisateurs avec des outils pratiques, tout en partageant ma passion pour le jeu vidéo.
+
+## **Charte Graphique**
+
+### Palette de couleurs
+
 | Nom                           | Code        | Usage                              |
 | ----------------------------- | ----------- | ---------------------------------- |
 | **Noir Profond**              | `#0e0e0e`   | Fond global du site                |
@@ -9,51 +26,25 @@
 | **Vert Émeraude Transparent** | `#79e68a60` | Bordures légères, éléments passifs |
 | **Gris Clair**                | `#e0e0e0`   | Texte principal                    |
 
-2. Typographie
+### Typographie
+
 | Élément          | Police            | Style                      |
 | ---------------- | ----------------- | -------------------------- |
 | **Texte global** | Arial, sans-serif | Lisible, neutre            |
 | **Titres (H1)**  | Arial, sans-serif | Majuscules, spacing élargi |
 
-Paramètres spécifiques aux titres :
- - taille : 2.8rem
- - couleur : #79e68a
- - transformation : uppercase
- - espacement lettres : 2px
-
-3. Mise en page
-Body
- - marge : 0
- - padding : 0
- - fond : #0e0e0e
- - couleur du texte : #e0e0e0
- - police par défaut : Arial, sans-serif
-Container
- - largeur max : 600px
- - centrage horizontal automatique
- - marge verticale : 40px
- - alignement : center
-
-4. Composants UI
-Menu
- - liste sans puces
- - padding : 0
- - chaque élément (li) possède une marge verticale : 15px
-Liens du menu
- - affichage : block
- - padding : 15px 20px
- - taille texte : 1.2rem
- - fond : #1a1a1a
- - couleur texte : #79e68a
- - bordure : 2px solid #79e68a60
- - arrondi : 8px
- - transition : 0.2s (couleur + fond)
-Hover
- - fond : #79e68a
- - texte : #0e0e0e
- - bordure : #79e68a
-
-5. Ambiance visuelle
+### Ambiance visuelle
  - Look dark futuriste, contrasté par une lueur verte chaleureuse.
  - Style simple, lisible, orienté developer tools.
  - Interaction légère mais nette grâce au hover vert → noir.
+
+## **License et Copyright**
+Ce projet est la propriété intellectuelle de son auteur.
+
+Copyright (c) 2025 Noah Mercado / DevGameForge
+
+All Rights Reserved.
+
+La copie, la modification, la distribution, la publication ou l'utilisation non autorisée, en tout ou en partie, est strictement interdite sans permission écrite préalable de l'auteur.
+
+Pour toute demande concernant les licences ou les permissions, veuillez contacter : devgameforge.contact@gmail.com
