@@ -19,7 +19,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 0px;
+    padding: 10px 0px;
     background-color: var(--color-noir-profond);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     z-index: 100;
@@ -334,10 +334,9 @@
 }
 
 /* Correction pour les boutons dans la modale de settings */
-#settings-modal .big-btn, #settings-modal .small-btn {
+#settings-modal .btn{
     width: auto;
     max-width: none;
-    margin: 10px 5px;
 }
 
 #settings-modal input[type="color"] {
