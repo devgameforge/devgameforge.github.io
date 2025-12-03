@@ -224,7 +224,12 @@ canvas {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 10px;
+}
+
+.color-wrapper label {
+    text-transform: uppercase;
 }
 
 input[type="color"] {
@@ -243,48 +248,4 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
     border: 2px solid #79e68a;
     border-radius: 8px;
-}
-
-/* Style pour l'affichage de la couleur (#color-picker) */
-#color-picker {
-    background: #0e0e0e;
-    color: #e0e0e0;
-    border: 1px solid #79e68a60;
-    padding: 5px;
-    text-align: center;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-
-/* Damier pour visualiser la transparence dans l'aperçu */
-#color-preview {
-    border-radius: 8px;
-    /* Damier de fond pour l'aperçu de la transparence */
-    background-image: 
-      linear-gradient(45deg, #444 25%, transparent 25%), 
-      linear-gradient(-45deg, #444 25%, transparent 25%), 
-      linear-gradient(45deg, transparent 75%, #444 75%), 
-      linear-gradient(-45deg, transparent 75%, #444 75%);
-    background-size: 10px 10px;
-    background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
-}
-
-/* Contrôle de la transparence */
-.alpha-control {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    margin-top: 20px;
-    padding: 10px;
-    border-top: 1px solid #79e68a60;
-}
-
-#alpha-slider {
-    width: 100%;
-}
-
-#alpha-value {
-    color: #79e68a;
-    font-size: 0.9rem;
 }

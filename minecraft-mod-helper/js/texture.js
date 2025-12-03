@@ -6,20 +6,20 @@ const bgCanvas = document.getElementById('bg-canvas');
 const bgCtx = bgCanvas.getContext('2d');
 
 const sizeSelect = document.getElementById('size-select');
-const colorPickerInput = document.getElementById('color-picker');
-const rgbPicker = document.getElementById('rgb-picker'); // NOUVEAU
-const alphaSlider = document.getElementById('alpha-slider'); // NOUVEAU
-const alphaValueDisplay = document.getElementById('alpha-value'); // NOUVEAU
-const colorPreview = document.getElementById('color-preview'); // NOUVEAU
+const colorPickerInput = document.getElementById('color-picker'); // Cet élément est maintenant redondant
+const rgbPicker = document.getElementById('rgb-picker'); 
+// Suppression des éléments Alpha :
+// const alphaSlider = document.getElementById('alpha-slider');
+// const alphaValueDisplay = document.getElementById('alpha-value');
+const colorPreview = document.getElementById('color-preview'); 
 const btnDownload = document.getElementById('btn-download');
-const btnClear = document.getElementById('btn-clear'); // Nouveau
-const btnEyedropper = document.getElementById('btn-eyedropper'); // NOUVEAU
-const btnUndo = document.getElementById('btn-undo'); // NOUVEAU
-const btnZoomIn = document.getElementById('btn-zoom-in'); // Nouveau
-const btnZoomOut = document.getElementById('btn-zoom-out'); // Nouveau
-const zoomLevelDisplay = document.getElementById('zoom-level'); // Nouveau
-const canvasViewport = document.querySelector('.canvas-viewport'); // Nouveau
-
+const btnClear = document.getElementById('btn-clear'); 
+const btnEyedropper = document.getElementById('btn-eyedropper'); 
+const btnUndo = document.getElementById('btn-undo'); 
+const btnZoomIn = document.getElementById('btn-zoom-in'); 
+const btnZoomOut = document.getElementById('btn-zoom-out'); 
+const zoomLevelDisplay = document.getElementById('zoom-level'); 
+const canvasViewport = document.querySelector('.canvas-viewport'); 
 
 
 let history = []; // Tableau pour stocker les états du canvas
@@ -31,14 +31,15 @@ const tools = {
     brush: document.getElementById('btn-brush'),
     bucket: document.getElementById('btn-bucket'),
     eraser: document.getElementById('btn-eraser'),
-    eyedropper: btnEyedropper // NOUVEAU
+    eyedropper: btnEyedropper 
 };
 
 // État
 let currentSize = 16; // Taille initiale du canvas
 let currentRGB = '#79e68a'; // Couleur sans transparence (HEX)
-let currentAlpha = 1.0; // Transparence (0.0 à 1.0)
-let currentColor = 'rgba(121, 230, 138, 1)'; // Couleur finale pour le dessin (RGBA)
+// Suppression de la variable de transparence :
+// let currentAlpha = 1.0; 
+let currentColor = '#79e68a'; // Couleur finale pour le dessin (HEX)
 let currentTool = 'brush';
 let isDrawing = false;
 let zoomLevel = 1.0; // 1.0 = 100%
@@ -48,7 +49,7 @@ function init() {
     resizeCanvas(currentSize);
     updateZoomDisplay();
     setupEvents();
-    updateFinalColor();
+    updateFinalColor(); // Initialise currentColor avec currentRGB
     saveState(); // Sauvegarde l'état initial (canvas vide)
 }
 
@@ -115,18 +116,20 @@ function setupEvents() {
         resizeCanvas(e.target.value);
     });
 
-    colorPickerInput.addEventListener('input', (e) => currentColor = e.target.value);
+    // Suppression de l'écouteur du colorPickerInput s'il était utilisé pour une chaîne RGBA
+    // On se base uniquement sur rgbPicker (HEX)
+    // colorPickerInput.addEventListener('input', (e) => currentColor = e.target.value);
 
     rgbPicker.addEventListener('input', (e) => {
         currentRGB = e.target.value;
         updateFinalColor();
     });
 
-    // Changement de la transparence (Alpha)
-    alphaSlider.addEventListener('input', (e) => {
-        currentAlpha = parseFloat(e.target.value);
-        updateFinalColor();
-    });
+    // Suppression de l'écouteur pour alphaSlider :
+    // alphaSlider.addEventListener('input', (e) => {
+    //     currentAlpha = parseFloat(e.target.value);
+    //     updateFinalColor();
+    // });
 
     Object.keys(tools).forEach(key => {
         tools[key].addEventListener('click', () => {
@@ -195,89 +198,141 @@ function startDrawing(e) {
 }
 function draw(e) { if (!isDrawing || currentTool === 'bucket') return; useTool(e); }
 
+/**
+ * Logique principale pour l'utilisation de l'outil sélectionné (pinceau, gomme, seau, pipette).
+ *
+ * Dépendances (non fournies ici) :
+ * - getMousePos(e)
+ * - ctx (contexte du canvas)
+ * - currentTool, currentColor
+ * - saveState()
+ * - fillArea()
+ * - rgbToHex()
+ * - rgbPicker, updateFinalColor()
+ */
 function useTool(e) {
     const pos = getMousePos(e);
     const x = pos.x; const y = pos.y;
     let actionTaken = false; // Indicateur pour savoir si l'état doit être sauvegardé
 
     if (currentTool === 'brush') {
-        ctx.fillStyle = currentColor;
+        // Le pinceau est souvent utilisé en mode 'drag', la sauvegarde doit être gérée
+        // soit à la fin du drag (mouseup), soit pour chaque pixel si le drag est lent.
+        // Ici, on dessine juste le pixel.
+        ctx.fillStyle = currentColor; // currentColor est maintenant HEX
         ctx.fillRect(x, y, 1, 1);
         actionTaken = true;
     } else if (currentTool === 'eraser') {
         ctx.clearRect(x, y, 1, 1);
         actionTaken = true;
     } else if (currentTool === 'bucket' && e.type === 'mousedown') {
-        fillArea(x, y, currentColor);
+        // Appel de la fonction corrigée
+        fillArea(x, y, currentColor); // currentColor est maintenant HEX
         actionTaken = true;
     } else if (currentTool === 'eyedropper') {
-
-        if (actionTaken && e.type === 'mousedown') {
-            // S'assurer que les actions de "glisser" ne sauvegardent pas à chaque pixel
-            // mais une seule fois à la fin ou au début du clic
-            // Pour le pinceau, on va plutôt sauvegarder à la fin du mouvement (mouseup)
-            // Cependant, la méthode la plus simple pour le pixel art est de sauvegarder après chaque clic/action:
-            saveState();
-        }
         if (e.type === 'mousedown') {
             // Récupérer les données RGBA du pixel
             const pixelData = ctx.getImageData(x, y, 1, 1).data;
             const r = pixelData[0];
             const g = pixelData[1];
             const b = pixelData[2];
-            const a = pixelData[3];
+            const a = pixelData[3]; // L'alpha est toujours lu mais n'est pas utilisé pour la couleur
 
-            // Si le pixel est complètement transparent (a=0), on ne fait rien ou on prend une couleur par défaut
+            // Si le pixel est complètement transparent (a=0), on ignore l'action
             if (a === 0) {
-                // Optionnel: On peut choisir de récupérer la couleur du damier de fond si besoin,
-                // mais pour l'instant, si c'est transparent, on garde la couleur courante.
                 console.log("Pixel transparent détecté. Couleur non changée.");
                 return;
             }
 
-            const alpha = a / 255;
+            // Suppression de la gestion Alpha :
+            // const alpha = a / 255;
             currentRGB = rgbToHex(r, g, b);
-            currentAlpha = alpha;
+            // currentAlpha = alpha; // Supprimé
 
             rgbPicker.value = currentRGB; // Sélecteur natif
-            alphaSlider.value = currentAlpha; // Curseur Alpha
+            // alphaSlider.value = currentAlpha; // Supprimé
 
-            updateFinalColor();
-            // Convertir en HEX
-            const hexColor = rgbToHex(r, g, b);
-
+            updateFinalColor(); // Met à jour currentColor à partir de currentRGB (HEX)
+            
             // Revenir automatiquement au pinceau après avoir sélectionné la couleur
             currentTool = 'brush';
             document.querySelector('.tool-btn.active').classList.remove('active');
-            tools.brush.classList.add('active');
+            // Assurez-vous que 'tools' est défini et que 'tools.brush' est accessible
+            if (typeof tools !== 'undefined' && tools.brush) {
+                tools.brush.classList.add('active');
+            } else {
+                console.error("L'objet 'tools' ou 'tools.brush' n'est pas défini pour activer le pinceau.");
+            }
         }
+    }
+
+    // Gestion de la sauvegarde de l'état (Undo/Redo)
+    // On sauvegarde l'état à la fin de l'action mousedown pour le seau.
+    if (actionTaken && e.type === 'mousedown') {
+        saveState();
     }
 }
 
+
+/**
+ * Implémentation de l'algorithme "Flood Fill" (Remplissage par Débordement).
+ * Utilise uniquement les couleurs RGB opaques.
+ *
+ * @param {number} startX - Coordonnée X de départ.
+ * @param {number} startY - Coordonnée Y de départ.
+ * @param {string} fillColor - La couleur de remplissage en format HEX (#rrggbb).
+ */
 function fillArea(startX, startY, fillColor) {
     const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const getPixelColor = (x, y) => {
         if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) return null;
         const index = (y * canvas.width + x) * 4;
+        // Retourne les composantes RGB et A
         return { r: imgData.data[index], g: imgData.data[index + 1], b: imgData.data[index + 2], a: imgData.data[index + 3] };
     };
+
+    // 1. Détermination de la couleur cible (celle à remplacer)
     const targetColor = getPixelColor(startX, startY);
+
+    // 2. Préparation de la couleur de remplissage (en RGBA 0-255)
+    // Utilise la couleur HEX fournie et force l'opacité (a) à 255 (opaque).
     const r = parseInt(fillColor.slice(1, 3), 16);
     const g = parseInt(fillColor.slice(3, 5), 16);
     const b = parseInt(fillColor.slice(5, 7), 16);
-    const a = 255;
-    if (targetColor.r === r && targetColor.g === g && targetColor.b === b && targetColor.a === a) return;
+    const a = 255; 
+
+    // ********* CORRECTION DE LA BOUCLE INFINIE ICI *********
+    // Vérification basée sur RGB et opacité (qui est toujours 255 pour le seau sans transparence)
+    if (targetColor.r === r && targetColor.g === g && targetColor.b === b && targetColor.a === a) {
+        console.log("Couleur cible déjà identique à la couleur de remplissage. Arrêt pour éviter la boucle infinie.");
+        return;
+    }
+    // *******************************************************
+
     const stack = [[startX, startY]];
+
     while (stack.length) {
         const [x, y] = stack.pop();
         const currentColor = getPixelColor(x, y);
+
         if (!currentColor) continue;
+
+        // On vérifie si la couleur courante correspond à la couleur cible originale (RGB+A)
         if (currentColor.r === targetColor.r && currentColor.g === targetColor.g && currentColor.b === targetColor.b && currentColor.a === targetColor.a) {
             const index = (y * canvas.width + x) * 4;
-            imgData.data[index] = r; imgData.data[index + 1] = g; imgData.data[index + 2] = b; imgData.data[index + 3] = a;
+            
+            // 3. Application de la nouvelle couleur dans le tableau de données
+            imgData.data[index] = r;
+            imgData.data[index + 1] = g;
+            imgData.data[index + 2] = b;
+            imgData.data[index + 3] = a; // Forcé à 255 (opaque)
+
+            // 4. Ajout des voisins à la pile
             stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
         }
     }
+
+    // 5. Mise à jour du canvas
     ctx.putImageData(imgData, 0, 0);
 }
 
@@ -362,25 +417,18 @@ function rgbToHex(r, g, b) {
 }
 
 /**
- * Met à jour la couleur finale et l'affichage.
+ * Met à jour la couleur finale.
+ * Ne gère plus l'alpha. currentColor est maintenant toujours en HEX.
  */
 function updateFinalColor() {
-    // 1. Convertir HEX en RGB(A)
-    const r = parseInt(currentRGB.slice(1, 3), 16);
-    const g = parseInt(currentRGB.slice(3, 5), 16);
-    const b = parseInt(currentRGB.slice(5, 7), 16);
+    // La couleur finale est simplement la couleur RGB (HEX)
+    currentColor = currentRGB;
 
-    // 2. Créer la chaîne RGBA
-    currentColor = `rgba(${r}, ${g}, ${b}, ${currentAlpha})`;
-
-    // 3. Mettre à jour l'affichage de la valeur Alpha
-    alphaValueDisplay.textContent = `${Math.round(currentAlpha * 100)}%`;
-
-    // 4. Mettre à jour l'affichage de l'input texte
-    colorPickerInput.value = currentAlpha < 1 ? currentColor : currentRGB;
-
-    // 5. Mettre à jour l'aperçu
+    // Mise à jour de l'aperçu
     colorPreview.style.backgroundColor = currentColor;
+    
+    // Mettre à jour l'input text/color natif (si rgbPicker est le seul élément)
+    colorPickerInput.value = currentRGB; 
 }
 
 init();

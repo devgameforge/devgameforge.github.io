@@ -40,9 +40,6 @@ body {
     /* Définition de la taille de l'image à 64x64 */
     width: 64px;
     height: 64px;
-    /* Optionnel : ajouter un petit effet visuel de la charte graphique */
-    border: 2px solid var(--color-vert-emeraude-transparent);
-    border-radius: 4px;
     transition: border-color 0.2s;
 }
 
@@ -78,12 +75,17 @@ h1 {
  * 4. Composants UI (Lien principal - .big-btn)
  * ---------------------------------------------------- */
 
+.container-btn{
+    display: flex;
+    flex-direction: column;
+}
+
 .big-btn {
     /* Reprise des styles "Liens du menu" pour le bouton d'action principal */
     display: inline-block; /* Affiche comme un bloc mais s'ajuste au contenu */
     text-decoration: none;
     font-size: 1.2rem;
-    margin: 20px 0; /* Marge autour du bouton */
+    margin: 10px 0; /* Marge autour du bouton */
 
     /* Styles de base */
     padding: 15px 20px;
