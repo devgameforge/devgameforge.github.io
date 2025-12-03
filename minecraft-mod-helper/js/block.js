@@ -1,3 +1,5 @@
+import { showAlert } from "/components/alert/alert.js";
+
 window.addEventListener("load", () => {
     const fields = {
         blockName: "text",
@@ -240,20 +242,6 @@ window.addEventListener("load", () => {
                 }).build());
 }`;
     }
-
-    function showAlert(message) {
-        const alertEl = document.getElementById("customAlert");
-        const alertMsg = document.getElementById("alertMessage");
-        const closeBtn = document.getElementById("alertClose");
-
-        alertMsg.textContent = message;
-        alertEl.classList.remove("hidden");
-
-        closeBtn.onclick = () => {
-            alertEl.classList.add("hidden");
-        };
-    }
-
 
     function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);

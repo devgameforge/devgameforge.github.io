@@ -1,14 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevGameForge — Projects Manager</title>
-    <link rel="icon" type="image/png" href="/favicon/favicon.ico">
+    <link rel="stylesheet" href="/components/logo/logo.css">
+    <link rel="stylesheet" href="/components/alert/alert.css">
+    <link rel="stylesheet" href="/components/btn/btn.css">
     <link rel="stylesheet" href="../css/projects.css">
 </head>
+
 <body>
-    
-    <script src="../js/projects.js"></script>
+
+    <a href="/index.html" class="logo-btn" title="Retour à l'accueil DevGameForge">
+        <img src="/img/DevGameForgeLogo-no-text.png" alt="Logo DevGameForge">
+    </a>
+
+    <main class="projects-manager-landing">
+
+        <h1>Projects Manager</h1>
+
+        <p>Organisez et suivez tous vos projets. Cliquez sur un tableau pour l'ouvrir ou créez-en un nouveau ci-dessous.
+        </p>
+
+        <div class="main-action-container">
+            <button id="add-board-btn" class="btn">
+                Créer un nouveau Tableau
+            </button>
+        </div>
+
+        <section id="boards-container" class="boards-grid">
+            <div class="create-card-placeholder">
+                <button class="create-card-btn" id="create-board-placeholder-btn">
+                    <span class="plus-icon">+</span>
+                    Nouveau Tableau
+                </button>
+            </div>
+        </section>
+
+        <div id="board-creation-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Créer un Tableau</h2>
+                <input type="text" id="new-board-title" placeholder="Titre du Tableau" required>
+                <div class="background-selector">
+                    <label for="board-background">Couleur de fond :</label>
+                    <input type="color" id="board-background" value="#1a1a1a">
+                </div>
+                <div class="modal-actions">
+                    <button id="save-new-board" class="btn">Créer</button>
+                    <button id="close-modal-btn" class="btn">Annuler</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer-note">Projects Manager by DevGameForge</div>
+    </main>
+
+    <div id="customAlert" class="alert hidden">
+        <div class="alert-box">
+            <p id="alertMessage"></p>
+            <button id="alertClose">OK</button>
+        </div>
+    </div>
+
+    <script type="module" src="../js/projects.js"></script>
 </body>
+
 </html>

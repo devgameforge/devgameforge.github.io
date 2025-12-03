@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="board-page-title">Chargement du Tableau...</title>
+    <link rel="stylesheet" href="/components/logo/logo.css">
+    <link rel="stylesheet" href="/components/alert/alert.css">
+    <link rel="stylesheet" href="/components/btn/btn.css">
+    <link rel="stylesheet" href="../css/projects.css">
+    <link rel="stylesheet" href="../css/board-view.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+
+<body id="board-body">
+
+
+    <header id="board-header">
+        <a href="./projects.html" class="logo-btn" title="Retour aux Tableaux de Bord"><img
+                src="/img/DevGameForgeLogo-no-text.png" alt="Logo DevGameForge"></a>
+        <div class="board-header-div">
+            <h2 id="board-title-display" contenteditable="false">Titre du Tableau</h2>
+
+            <div class="board-actions">
+                <button class="btn" id="edit-board-settings-btn">⚙️ Modifier</button>
+                <button class="btn delete-btn" id="delete-board-btn">🗑️ Supprimer</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="lists-container" class="lists-container">
+        <div class="add-list-placeholder">
+            <button class="btn add-list-btn" id="add-list-btn">
+                Ajouter une liste
+            </button>
+            <div class="new-list-form hidden">
+                <input type="text" id="new-list-title-input" placeholder="Saisir le titre de la liste...">
+                <button class="btn save-list-btn">Ajouter la liste</button>
+                <button class="btn cancel-list-btn">❌</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="task-modal" class="modal hidden">
+        <div class="modal-content task-modal-content">
+            <h3 id="task-modal-title" contenteditable="true">Titre de la Tâche</h3>
+            <h4>📝 Description :</h4>
+            <textarea id="task-modal-description" placeholder="Ajouter une description détaillée ici..."></textarea>
+            <div class="modal-footer">
+                <button class="btn delete-btn" id="delete-task-btn">Supprimer la tâche</button>
+                <button class="btn" id="save-task-btn">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Modifier les Paramètres du Tableau</h2>
+            <label for="settings-board-title">Titre :</label>
+            <input type="text" id="settings-board-title" required>
+
+            <label for="settings-board-background">Couleur de fond :</label>
+            <input type="color" id="settings-board-background">
+
+            <button class="btn" id="save-settings-btn">Enregistrer les modifications</button>
+            <button class="btn" id="close-settings-modal-btn">Annuler</button>
+        </div>
+    </div>
+
+    <div id="customAlert" class="alert hidden">
+        <div class="alert-box">
+            <p id="alertMessage"></p>
+            <button id="alertClose">OK</button>
+        </div>
+    </div>
+
+    <script src="../js/projects.js"></script>
+    <script type="module" src="../js/board-view.js"></script>
+</body>
+
+</html>

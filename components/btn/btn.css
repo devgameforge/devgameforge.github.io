@@ -1,0 +1,29 @@
+:root {
+    --color-noir-profond: #0e0e0e;
+    --color-graphite-fonce: #1a1a1a;
+    --color-vert-emeraude: #79e68a;
+    --color-vert-emeraude-transparent: #79e68a60;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 10px 0;
+
+    padding: 15px 20px;
+    background-color: var(--color-graphite-fonce);
+    color: var(--color-vert-emeraude);
+    border: 2px solid var(--color-vert-emeraude-transparent);
+    border-radius: 8px;
+
+    /* Transition pour l'effet hover */
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn:hover {
+    /* Effet Hover (Vert Émeraude → Noir Profond) */
+    background-color: var(--color-vert-emeraude);
+    color: var(--color-noir-profond);
+    border-color: var(--color-vert-emeraude); /* Bordure unie au survol */
+}

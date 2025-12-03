@@ -2,6 +2,15 @@
 /* 1. TYPOGRAPHIE & MISE EN PAGE GLOBALE (Charte Graphique) */
 /* ------------------------------------------- */
 
+:root {
+    --color-noir-profond: #0e0e0e; /* Fond global */
+    --color-graphite-fonce: #1a1a1a; /* Cartes, boutons, sections UI */
+    --color-vert-emeraude: #79e68a; /* Titres, textes importants, hover */
+    --color-vert-emeraude-transparent: #79e68a60; /* Bordures légères */
+    --color-gris-clair: #e0e0e0; /* Texte principal */
+    --color-gris-moyen: #555; /* Texte secondaire, placeholders */
+}
+
 body {
     /* Palette : Noir Profond */
     background-color: #0e0e0e;
@@ -16,30 +25,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.logo-btn {
-    position: fixed;
-    top: 15px;
-    /* Marge depuis le haut */
-    left: 15px;
-    /* Marge depuis la gauche */
-    z-index: 1000;
-    /* Assure qu'il est au-dessus du reste du contenu */
-    line-height: 0;
-    /* Élimine l'espace potentiel sous l'image dû à l'alignement de texte */
-}
-
-.logo-btn img {
-    /* Définition de la taille de l'image à 64x64 */
-    width: 64px;
-    height: 64px;
-    transition: border-color 0.2s;
-}
-
-.logo-btn img:hover {
-    /* Interaction légère au survol */
-    border-color: var(--color-vert-emeraude);
 }
 
 .container {
