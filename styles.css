@@ -111,12 +111,12 @@ h1 {
 
 .footer-note {
     /* Style pour la note de pied de page */
-    margin-top: 40px;
+    margin-top: 20px;
     font-size: 0.9rem;
     color: var(--color-vert-emeraude-transparent); /* Rendre le texte moins intrusif */
 }
 
 p {
     /* Style pour le paragraphe d'introduction */
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
