@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #0e0e0e;
+    font-family: Arial, sans-serif;
+    color: #e0e0e0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    color: #79e68a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 15px 0;
+}
+
+.menu a {
+    display: block;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    background: #1a1a1a;
+    color: #79e68a;
+    text-decoration: none;
+    border: 2px solid #79e68a60;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.menu a:hover {
+    background: #79e68a;
+    color: #0e0e0e;
+    border-color: #79e68a;
+}

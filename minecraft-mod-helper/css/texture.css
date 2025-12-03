@@ -1,0 +1,290 @@
+/* style.css */
+body {
+    margin: 0;
+    padding: 0;
+    background: #0e0e0e;
+    font-family: Arial, sans-serif;
+    color: #e0e0e0;
+    height: 100vh;
+    overflow: hidden; /* Empêche le scroll global */
+}
+
+/* --- BOUTON RETOUR (top-left) --- */
+.back-btn {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 999;
+    display: inline-block;
+    padding: 10px 14px;
+    background: #1a1a1a;
+    color: #79e68a;
+    text-decoration: none;
+    border: 2px solid rgba(121, 230, 138, 0.38); /* #79e68a60 */
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.18s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.45);
+}
+
+.back-btn:hover,
+.back-btn:focus {
+    background: #79e68a;
+    color: #0e0e0e;
+    border-color: #79e68a;
+    outline: none;
+    transform: translateY(-1px);
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 0 0 20px 0;
+    color: #79e68a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* --- Barre d'outils --- */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1a1a1a;
+    padding: 15px 20px;
+    border: 2px solid #79e68a60;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.tools-group, .options-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Style des boutons basé sur ton .menu a */
+.tool-btn, .action-btn, select {
+    background: #0e0e0e;
+    color: #79e68a;
+    border: 2px solid #79e68a60;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: Arial, sans-serif;
+}
+
+.tool-btn:hover, .action-btn:hover {
+    background: #79e68a;
+    color: #0e0e0e;
+    border-color: #79e68a;
+}
+
+.tool-btn.active {
+    background: #79e68a;
+    color: #0e0e0e;
+    border-color: #79e68a;
+    box-shadow: 0 0 10px #79e68a40;
+}
+
+select {
+    padding: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+
+select option {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+/* --- Espace de travail --- */
+.workspace {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    overflow: hidden; /* Important pour que le canvas ne dépasse pas */
+}
+
+/* Bouton spécifique pour tout effacer (rouge au survol pour alerte) */
+.delete-btn:hover {
+    background: #ff4444;
+    border-color: #ff4444;
+    color: white;
+}
+
+/* Contrôles de zoom */
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #0e0e0e;
+    padding: 5px;
+    border-radius: 6px;
+    border: 1px solid #79e68a60;
+}
+
+.tool-btn.small {
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+
+#zoom-level {
+    font-size: 0.9rem;
+    color: #79e68a;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* Canvas : On retire width/height fixes ici, géré par JS */
+canvas {
+    image-rendering: pixelated; 
+    display: block;
+    /* width et height sont maintenant définis inline par le JS */
+    border: 1px solid #79e68a60;
+}
+
+/* Custom Scrollbar (Pour Chrome/Edge/Safari) - Pour aller avec le thème */
+.canvas-viewport::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.canvas-viewport::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 8px;
+}
+
+.canvas-viewport::-webkit-scrollbar-thumb {
+    background-color: #79e68a;
+    border-radius: 8px;
+    border: 3px solid #1a1a1a; /* Crée un espace autour */
+}
+
+.canvas-viewport {
+    flex: 1;
+    background: #151515;
+    border: 2px solid #333;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    position: relative;
+    padding: 20px;
+}
+
+/* Conteneur pour superposer les canvas */
+.canvas-stack {
+    position: relative;
+    /* Dimensions initiales, seront ajustées par JS si besoin mais le canvas a sa propre taille */
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+/* Le canvas de fond est en absolu derrière */
+#bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Le canvas de dessin est devant */
+#pixel-canvas {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 120px;
+    background: #1a1a1a;
+    border: 2px solid #79e68a60;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.color-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    background: none;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0; 
+}
+
+/* Mettez à jour le style du sélecteur de couleur natif pour le nouveau #rgb-picker */
+input[type="color"]::-webkit-color-swatch {
+    border: 2px solid #79e68a;
+    border-radius: 8px;
+}
+
+/* Style pour l'affichage de la couleur (#color-picker) */
+#color-picker {
+    background: #0e0e0e;
+    color: #e0e0e0;
+    border: 1px solid #79e68a60;
+    padding: 5px;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Damier pour visualiser la transparence dans l'aperçu */
+#color-preview {
+    border-radius: 8px;
+    /* Damier de fond pour l'aperçu de la transparence */
+    background-image: 
+      linear-gradient(45deg, #444 25%, transparent 25%), 
+      linear-gradient(-45deg, #444 25%, transparent 25%), 
+      linear-gradient(45deg, transparent 75%, #444 75%), 
+      linear-gradient(-45deg, transparent 75%, #444 75%);
+    background-size: 10px 10px;
+    background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+}
+
+/* Contrôle de la transparence */
+.alpha-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #79e68a60;
+}
+
+#alpha-slider {
+    width: 100%;
+}
+
+#alpha-value {
+    color: #79e68a;
+    font-size: 0.9rem;
+}
