@@ -13,6 +13,7 @@
     --color-vert-emeraude-transparent: #79e68a60; /* Bordures légères */
     --color-gris-clair: #e0e0e0; /* Texte principal */
     --color-gris-moyen: #555; /* Texte secondaire, placeholders */
+    --color-rouge-alert: #e63946; /* Pour les alertes ou erreurs */
 }
 
 /* ----------------------------------------------------
@@ -58,7 +59,7 @@ h1 {
 
 h2 {
     color: var(--color-vert-emeraude);
-    margin-bottom: 15px;
+    margin: 10px 0px;
 }
 
 /* ----------------------------------------------------
@@ -75,9 +76,19 @@ h2 {
     align-items: center; /* Pour centrer les boutons dans l'index.html */
 }
 
+.btn{
+    padding: 10px 14px;
+}
+
 #board-background{
     height: 64px;
     cursor: pointer;
+}
+
+#close-modal-btn:hover{
+    background-color: var(--color-rouge-alert);
+    color: var(--color-gris-clair);
+    border-color: var(--color-gris-clair);
 }
 
 input[type="text"], input[type="color"] {
@@ -195,7 +206,7 @@ input[type="text"]::placeholder {
 
 .modal-content {
     background-color: var(--color-graphite-fonce);
-    padding: 30px;
+    padding: 15px 30px;
     border-radius: 12px;
     width: 90%;
     max-width: 450px;

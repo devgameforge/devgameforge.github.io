@@ -1,0 +1,22 @@
+.main-container {
+    max-width: 600px;
+    margin: 60px auto;
+}
+
+.title{
+    margin-bottom: 20px;
+}
+
+.text{
+    margin-bottom: 20px;
+}
+
+.btn-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer{
+    margin-top: 20px;
+}
