@@ -9,16 +9,12 @@ let currentBoardData = null;
 const boardBody = document.getElementById('board-body');
 const boardTitleDisplay = document.getElementById('board-title-display');
 const listsContainer = document.getElementById('lists-container');
-const addListBtn = document.getElementById('add-list-btn');
 const newListForm = document.querySelector('.new-list-form');
 const newListTitleInput = document.getElementById('new-list-title-input');
-const saveListBtn = document.querySelector('.save-list-btn');
-const cancelListBtn = document.querySelector('.cancel-list-btn');
 
 // Éléments de la Modale de Tâche
 const taskModal = document.getElementById('task-modal');
 const taskModalTitle = document.getElementById('task-modal-title');
-const taskModalCheckbox = document.getElementById('task-modal-checkbox');
 const taskModalDescription = document.getElementById('task-modal-description');
 const saveTaskBtn = document.getElementById('save-task-btn');
 const deleteTaskBtn = document.getElementById('delete-task-btn');
@@ -121,7 +117,7 @@ function createListElement(list) {
     listWrapper.innerHTML = `
         <div class="list-header">
             <h3 class="list-title" contenteditable="true" data-list-id="${list.id}">${list.title}</h3>
-            <button class="list-menu-btn delete-list-btn" data-list-id="${list.id}">...</button>
+            <button class="list-menu-btn delete-list-btn" data-list-id="${list.id}">🗑️</button>
         </div>
         <div class="tasks-list" data-list-id="${list.id}">
             </div>
@@ -130,7 +126,7 @@ function createListElement(list) {
             <div class="new-task-form hidden">
                 <input type="text" placeholder="Nom de la tâche" class="new-task-title-input">
                 <button class="btn save-task-title-btn">Ajouter</button>
-                <button class="btn cancel-task-title-btn">❌</button>
+                <button class="btn delete-btn cancel-task-title-btn">Annuler</button>
             </div>
         </div>
     `;
