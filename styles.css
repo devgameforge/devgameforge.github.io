@@ -1,11 +1,3 @@
-/*
- * 🎨 Charte Graphique – DevGameForge
- * Style dark futuriste avec des touches de vert émeraude.
- */
-
-/* ----------------------------------------------------
- * 1. Variables de Couleurs
- * ---------------------------------------------------- */
 :root {
     --color-noir-profond: #0e0e0e; /* Fond global */
     --color-graphite-fonce: #1a1a1a; /* Cartes, boutons, sections UI */
@@ -14,64 +6,194 @@
     --color-gris-clair: #e0e0e0; /* Texte principal */
 }
 
-/* ----------------------------------------------------
- * 2. Mise en page (Body et Container)
- * ---------------------------------------------------- */
-body {
-    /* Mise en page Body */
+*{
     margin: 0;
     padding: 0;
+}
+
+body {
     background-color: var(--color-noir-profond);
-    color: var(--color-gris-clair);
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    text-align: center; /* Alignement : center pour le container/landing */
+    text-align: center;
+    box-sizing: border-box;
 }
 
-.landing {
-    /* Container */
-    max-width: 600px;
-    margin: 40px auto; /* Centrage horizontal automatique + marge verticale */
-    padding: 20px; /* Ajout d'un padding léger pour l'esthétique */
-    /* On pourrait ajouter un fond graphite pour encadrer le contenu
-       background-color: var(--color-graphite-fonce);
-       border-radius: 12px;
-    */
+/*########### Logo Button ###########*/
+.logo-btn{
+   position: fixed;
+   top: 15px; 
+   left: 15px;
+   z-index: 1000;
+   line-height: 0;
+   border: 2px solid transparent;
+   border-radius: 8px;
+   transition: border-color 0.2s;
+}
+.logo-btn img {
+    width: 96px;
+    height: 96px;
+    display: block;
+}
+.logo-btn:hover {
+    border-color: var(--color-vert-emeraude);
 }
 
-/* ----------------------------------------------------
- * 3. Typographie (Titres H1)
- * ---------------------------------------------------- */
-h1 {
-    /* Titres (H1) */
-    font-size: 2.8rem;
+/*########### Button ###########*/
+.btn{
+    width: 100%;
     color: var(--color-vert-emeraude);
+    background-color: var(--color-graphite-fonce);
+    border: 2px solid var(--color-vert-emeraude);
+    border-radius: 15px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn:hover{
+    background-color: var(--color-vert-emeraude);
+    color: var(--color-noir-profond);
+    cursor: pointer;
+}
+.small-btn{
+    padding: 10px 14px;
+    font-size: 1rem;
+}
+.medium-btn{
+    padding: 14px 18px;
+    font-size: 1.2rem;
+}
+.big-btn{
+    padding: 18px 22px;
+    font-size: 1.4rem;
+}
+
+/*########### Lien ###########*/
+.no-decoration{
+    text-decoration: none;
+}
+
+/*########### Background ###########*/
+
+/*########### Background Color ###########*/
+.dark-background {
+    background-color: var(--color-noir-profond);
+}
+.graphite-background {
+    background-color: var(--color-graphite-fonce);
+}
+.red-background {
+    background-color: var(--color-rouge-alert);
+}
+
+/*########### Title ###########*/
+.title{
+    font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 20px;
+}
+.small-title{
+    font-size: 1.5rem;
+}
+.medium-title{
+    font-size: 2rem;
+}
+.big-title{
+    font-size: 2.5rem;
 }
 
-/* ----------------------------------------------------
- * 4. Composants UI (Lien principal - .big-btn)
- * ---------------------------------------------------- */
+/*########### Text ###########*/
+.italic-text{
+    font-style: italic;
+}
+.bold-text{
+    font-weight: bold;
+}
 
-.container-btn{
+/*########### Text Color ###########*/
+.small-text{
+    font-size: 0.9rem;
+}
+.medium-text{
+    font-size: 1.0rem;
+}
+.big-text{
+    font-size: 1.2rem;
+}
+
+/*########### Text Color ###########*/
+.green-text {
+    color: var(--color-vert-emeraude);
+}
+.dark-green-text {
+    color: var(--color-vert-emeraude-transparent);
+}
+.white-text {
+    color: var(--color-gris-clair);
+}
+
+/*########### Border ###########*/
+.green-border {
+    border: 2px solid var(--color-vert-emeraude);
+}
+.green-border-light {
+    border: 1px solid var(--color-vert-emeraude-transparent);
+}
+.white-border {
+    border: 2px solid var(--color-gris-clair);
+}
+
+/*########### Display Inline Block ###########*/
+.inline-block{
+    display: inline-block;
+}
+
+/*########### Display Flex ###########*/
+.flex{
+    display: flex;
+}
+.flex-column{
     display: flex;
     flex-direction: column;
 }
-
-/* ----------------------------------------------------
- * 5. Éléments additionnels
- * ---------------------------------------------------- */
-
-.footer-note {
-    /* Style pour la note de pied de page */
-    margin-top: 20px;
-    font-size: 0.9rem;
-    color: var(--color-vert-emeraude-transparent); /* Rendre le texte moins intrusif */
+.flex-reverse-column{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+.flex-reverse-row{
+    display: flex;
+    flex-direction: row-reverse;
 }
 
-p {
-    /* Style pour le paragraphe d'introduction */
-    margin-bottom: 20px;
+/*########### Align Item ###########*/
+.align-center{
+    align-items: center;
+}
+.align-start{
+    align-items: start;
+}
+.align-end{
+    align-items: end;
+}
+
+/*########### Justify Content ###########*/
+.justify-center{
+    justify-content: center;
+}
+.justify-left{
+    justify-content: left;
+}
+.justify-right{
+    justify-content: right;
+}
+.space-between{
+    justify-content: space-between;
+}
+.space-around{
+    justify-content: space-around;
+}
+.space-evenly{
+    justify-content: space-evenly;
 }
