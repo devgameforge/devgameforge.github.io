@@ -44,8 +44,8 @@ body {
     width: 100%;
     color: var(--color-vert-emeraude);
     background-color: var(--color-graphite-fonce);
-    border: 2px solid var(--color-vert-emeraude);
-    border-radius: 15px;
+    border: 2px solid var(--color-vert-emeraude-transparent);
+    border-radius: 10px;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 .btn:hover{
@@ -91,13 +91,13 @@ body {
     letter-spacing: 2px;
 }
 .small-title{
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 .medium-title{
-    font-size: 2rem;
+    font-size: 2.3rem;
 }
 .big-title{
-    font-size: 2.5rem;
+    font-size: 2.8rem;
 }
 
 /*########### Text ###########*/
